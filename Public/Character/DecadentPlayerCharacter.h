@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "DecadentCharacterBase.h"
+#include "PlayerInterface.h"
 #include "DecadentPlayerCharacter.generated.h"
 
 struct FEnhancedInputActionEventBinding;
@@ -15,14 +16,16 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteractionAllowed, FDataTableRow
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInteractionDisallowed);
 
 UCLASS()
-class DECADENCE_API ADecadentPlayerCharacter : public ADecadentCharacterBase
+class DECADENCE_API ADecadentPlayerCharacter : public ADecadentCharacterBase, public IPlayerInterface
 {
 	GENERATED_BODY()
 private:
 	TWeakObjectPtr<UEnhancedInputComponent> InputComponent;
 	TWeakObjectPtr<AActor> CurrentInteractable;
 	TObjectPtr<FEnhancedInputActionEventBinding> InteractActionBinding;
-	
+	//UPROPERTY(EditDefaultsOnly, Category="Data")
+	//TObjectPtr<U> InteractActionBinding;
+	int LifePoints = 50; //TODO create a data asset for the player
 	void DisposeCurrentInteractable();
 
 	void OnInteractionInputPressed();
@@ -46,6 +49,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	virtual float GetLife_Implementation() const override { return LifePoints; };
+	
+	virtual void TakeHit_Implementation(int Damage) override { LifePoints -= Damage; };
+	
+	virtual void Die_Implementation() override;//TODO restart level
+ 
 	UFUNCTION()
 	void SetInputDirection(float XAxis);
 };

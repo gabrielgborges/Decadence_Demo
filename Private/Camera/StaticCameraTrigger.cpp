@@ -69,7 +69,7 @@ void AStaticCameraTrigger::NotifyActorEndOverlap(AActor* OtherActor)
 	ACharacter* PlayerCharacter = Cast<ACharacter, AActor>(OtherActor);
 	if (!PlayerCharacter) return;
 	
-	if (!PlayerCharacter->GetController()->IsA(APlayerController::StaticClass())) return;
+	if (!PlayerCharacter->GetController() || !PlayerCharacter->GetController()->IsA(APlayerController::StaticClass())) return;
 
 	UE_LOG(LogTemp, Warning, TEXT("AStaticCameraTrigger::NotifyActorEndOverlap"));
 	// PC->SetViewTargetWithBlend(

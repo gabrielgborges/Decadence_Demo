@@ -4,6 +4,7 @@
 #include "Character/DecadentPlayerCharacter.h"
 #include "EnhancedInputComponent.h"
 #include "Item/InteractableInterface.h"
+#include "Kismet/GameplayStatics.h"
 
 void ADecadentPlayerCharacter::DisposeCurrentInteractable()
 {
@@ -84,6 +85,11 @@ void ADecadentPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	{
 		InputComponent = inputComponent;
 	}
+}
+
+void ADecadentPlayerCharacter::Die_Implementation()
+{
+	UGameplayStatics::OpenLevel(this, FName(*UGameplayStatics::GetCurrentLevelName(this)));
 }
 
 void ADecadentPlayerCharacter::SetInputDirection(float XAxis)
