@@ -31,9 +31,17 @@ public:
 	TObjectPtr<UEnemyDataAsset> AttributesData;
 	UPROPERTY(EditAnywhere, Category="Gameplay")
 	FName HitCollisionSocket;
+	UPROPERTY(EditAnywhere, Category = "Gameplay")
+	TObjectPtr<UCurveFloat> MyBlendCurve;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Gameplay")
+	float CurrentPetrification = 0;
+	UPROPERTY(EditAnywhere, meta=(ClampMin = 0,ClampMax = 1), Category = "Gameplay")
+	float PetrifyChanceOnMovement = 0.5;
 	
 	virtual bool TryToPetrify_Implementation() override;
 
+	virtual bool PetrifyInOrOut_Implementation(bool In) override;
+	
 	virtual FVector GetHitCollisionSocketLocation_Implementation() override;
 
 	virtual const UEnemyDataAsset* GetData_Implementation() override {return AttributesData;}

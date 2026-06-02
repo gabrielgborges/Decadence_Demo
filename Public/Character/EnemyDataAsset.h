@@ -24,7 +24,11 @@ class DECADENCE_API UEnemyDataAsset : public UPrimaryDataAsset
 	UPROPERTY(EditDefaultsOnly)
 	float Speed;
 	UPROPERTY(EditDefaultsOnly)
-	int StunTime;
+	float Acceleration;
+	UPROPERTY(EditDefaultsOnly)
+	float StunTime;
+	UPROPERTY(EditDefaultsOnly)
+	float PetrificationSpeed;
 	UPROPERTY(EditDefaultsOnly, meta=(ClampMin = 0, ClampMax = 100))
 	float SightCapability;
 	UPROPERTY(EditDefaultsOnly, meta=(ClampMin = 0, ClampMax = 360))
@@ -53,7 +57,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	int GetSpeed() { return Speed; }
 	UFUNCTION(BlueprintCallable)
-	int GetStunTime() { return StunTime; }
+	int GetAcceleration() { return Acceleration; }
+	UFUNCTION(BlueprintCallable)
+	float GetStunTime() { return StunTime; }
+	UFUNCTION(BlueprintCallable)
+	float GetPetrificationSpeed() { return StunTime; }
 	UFUNCTION(BlueprintCallable)
 	float GetSightCapability() { return SightCapability; }
 	UFUNCTION(BlueprintCallable)

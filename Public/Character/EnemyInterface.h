@@ -26,6 +26,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	bool TryToPetrify();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool PetrifyInOrOut(bool In);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	FVector GetHitCollisionSocketLocation();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	const UEnemyDataAsset* GetData();

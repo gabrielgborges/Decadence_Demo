@@ -3,6 +3,8 @@
 
 #include "Character/DecadentPlayerCharacter.h"
 #include "EnhancedInputComponent.h"
+#include "GameplayMessages.h"
+#include "GameFramework/GameplayMessageSubsystem.h"
 #include "Item/InteractableInterface.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -23,7 +25,7 @@ void ADecadentPlayerCharacter::OnInteractionInputPressed()
 {
 	if (CurrentInteractable.IsValid())
 	{
-		IInteractableInterface::Execute_Interact(CurrentInteractable.Get());
+		IInteractableInterface::Execute_Interact(CurrentInteractable.Get(), this);
 		DisposeCurrentInteractable();
 	}
 }
@@ -76,7 +78,7 @@ void ADecadentPlayerCharacter::NotifyActorEndOverlap(AActor* OtherActor)
 	}
 }
 
-void ADecadentPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+void ADecadentPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
@@ -84,6 +86,23 @@ void ADecadentPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	if (inputComponent)
 	{
 		InputComponent = inputComponent;
+	}	
+}
+
+void ADecadentPlayerCharacter::UseHideSpot_Implementation(bool Enter)
+{
+	IsHidden = Enter;
+
+	if (Enter)
+	{
+		UGameplayMessageSubsystem& MessageSubsystem = UGameplayMessageSubsystem::Get(GetWorld());
+		FGameplayTag HideTag = FGameplayTag::RequestGameplayTag(FName("Gameplay.Player.Hide"));
+		if (MessageSubsystem.IsValidLowLevelFast())
+		{
+			FPlayerHidedMessage Message;
+			Message.HiddenActor = this;
+			MessageSubsystem.BroadcastMessage<FPlayerHidedMessage>(HideTag, Message);
+		}
 	}
 }
 

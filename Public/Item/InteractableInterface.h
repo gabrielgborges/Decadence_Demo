@@ -25,5 +25,5 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction")
 	void DenyInteraction();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction")
-	void Interact();
+	void Interact(AActor* InteractionInstigator);
 };

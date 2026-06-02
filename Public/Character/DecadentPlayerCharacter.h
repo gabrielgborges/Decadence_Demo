@@ -26,6 +26,7 @@ private:
 	//UPROPERTY(EditDefaultsOnly, Category="Data")
 	//TObjectPtr<U> InteractActionBinding;
 	int LifePoints = 50; //TODO create a data asset for the player
+	bool IsHidden = false;
 	void DisposeCurrentInteractable();
 
 	void OnInteractionInputPressed();
@@ -49,10 +50,11 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	//PlayerInterface overrides:
+	virtual bool IsHidden_Implementation() const override {return IsHidden; };
 	virtual float GetLife_Implementation() const override { return LifePoints; };
-	
+	virtual void UseHideSpot_Implementation(bool Enter) override;
 	virtual void TakeHit_Implementation(int Damage) override { LifePoints -= Damage; };
-	
 	virtual void Die_Implementation() override;//TODO restart level
  
 	UFUNCTION()

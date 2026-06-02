@@ -72,7 +72,7 @@ public:
 
 	virtual void DenyInteraction_Implementation() override;
 
-	virtual void Interact_Implementation() override;
+	virtual void Interact_Implementation(AActor* InteractionInstigator) override;
 
 	
 };

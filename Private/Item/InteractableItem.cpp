@@ -187,7 +187,7 @@ void AInteractableItem::DenyInteraction_Implementation()
 	UE_LOG(LogTemp, Log, TEXT("%s denied interaction."), *GetName());
 }
 
-void AInteractableItem::Interact_Implementation()
+void AInteractableItem::Interact_Implementation(AActor* InteractionInstigator)
 {
-	UE_LOG(LogTemp, Log, TEXT("%s did interact."), *GetName());
+	UE_LOG(LogTemp, Log, TEXT("%s did interact with %s."), *InteractionInstigator->GetName(), *GetName());
 }
