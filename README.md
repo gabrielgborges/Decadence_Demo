@@ -1,8 +1,15 @@
 # Decadence — UE5 Gameplay Demo (C++)
 
-A vertical slice of a **horror game** with fixed cameras showcasing production-grade Unreal Engine 5 C++: 
-async assetstreaming with stale-load guards, interface-driven interaction, CommonUI-backed
+A vertical slice of a **horror game** with fixed cameras showcasing production-grade Unreal Engine 5 C++:
+async asset streaming with stale-load guards, interface-driven interaction, CommonUI-backed
 static-camera framing, and strict ownership semantics throughout.
+
+## Stack
+
+`Unreal Engine 5` · `C++` · `CommonUI` · `Enhanced Input` · `UMG` · `GameplayTags` ·
+`Streamable Manager`
+
+`Gameplay Systems` · `Editor Tools` · `CI/CD Pipeline` · `Procedural Content Generation` `Gameplay Message Runtime`
 
 ## Highlights
 
@@ -20,16 +27,14 @@ static-camera framing, and strict ownership semantics throughout.
 
 - **CommonUI static-camera system.** `AStaticCameraTrigger` (box volume + `ACameraActor` + configurable `EViewTargetBlendFunction`) drives `UStaticCameraManagerComponent`, which fires typed multicast delegates carrying `TSubclassOf<UCommonActivatableWidget>` — the widget stack owns its lifecycle, the component only signals intent.
 
+## Tooling
 
-**Modules:** `Core`, `CoreUObject`, `Engine`, `InputCore`, `UMG`, `CommonUI`,
-`EnhancedInput`, `GameplayTags`.
+> *Click the thumbnail below to watch the tooling walkthrough on YouTube.*
 
-## Stack
+[![Decadence Tooling Video](https://img.youtube.com/vi/ao3kFNXRl14/maxresdefault.jpg)](https://www.youtube.com/watch?v=ao3kFNXRl14)
 
-Unreal Engine 5 · C++ · CommonUI · Enhanced Input · UMG · GameplayTags ·
-Streamable Manager
-
-**Note:** No AI tool was used for the development of the code. AI tools were only used as a research tool to dive-in into technical functionalities, identify possible bug causes and write documentation.
+**Note:** No AI tool was used for the development of the code. AI tools were only used as a research tool to dive into technical functionalities, identify possible bug causes, and write documentation.
 
 ---
+
 © Gabriel Borges. All rights reserved — contact for licensing.
