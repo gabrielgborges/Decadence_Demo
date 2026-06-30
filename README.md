@@ -9,7 +9,7 @@ static-camera framing, and strict ownership semantics throughout.
 `Unreal Engine 5` · `C++` · `CommonUI` · `Enhanced Input` · `UMG` · `GameplayTags` ·
 `Streamable Manager`
 
-`Gameplay Systems` · `Editor Tools` · `CI/CD Pipeline` · `Procedural Content Generation` `Gameplay Message Runtime`
+`Gameplay Systems` · `Editor Tools` · `CI/CD Pipeline` · `Procedural Content Generation` · `Gameplay Message Runtime`
 
 ## Highlights
 
